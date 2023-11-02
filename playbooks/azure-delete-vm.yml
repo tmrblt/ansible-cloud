@@ -3,6 +3,7 @@
   hosts: localhost
   connection: local
   gather_facts: false
+  
   vars:
     resource_group_name: 'openenv-9kk9c'
     network_resource_id: '/subscriptions/ede7f891-835c-4128-af5b-0e53848e54e7/resourceGroups/openenv-9kk9c/providers/Microsoft.Network/virtualNetworks/aap-vnet'
@@ -14,7 +15,24 @@
     allow_ssh: 'Allow'
     allow_https: 'Allow'
     allow_rdp: 'Allow'
+    
   tasks:
+  
+    - name: Create VM
+      azure.azcollection.azure_rm_virtualmachine:
+        resource_group: "{{ resource_group_name }}"
+        name: "{{ vm_name }}"
+        state: absent
+
+    - name: Create virtual network interface card
+      azure.azcollection.azure_rm_networkinterface:
+        resource_group: "{{ resource_group_name }}"
+        name: "{{ nic_name }}"
+        virtual_network: "{{ vnet_name }}"
+        subnet: "{{ subnet_name }}"
+        security_group: "{{ network_sec_group_name }}"
+        state: absent
+        
     - name: Create Network Security Group that allows SSH and RDP
       azure.azcollection.azure_rm_securitygroup:
         resource_group: "{{ resource_group_name }}"
@@ -38,19 +56,4 @@
             access: "{{ allow_rdp }}"
             priority: 1003
             direction: Inbound
-        state: absent
-
-    - name: Create virtual network interface card
-      azure.azcollection.azure_rm_networkinterface:
-        resource_group: "{{ resource_group_name }}"
-        name: "{{ nic_name }}"
-        virtual_network: "{{ vnet_name }}"
-        subnet: "{{ subnet_name }}"
-        security_group: "{{ network_sec_group_name }}"
-        state: absent
-
-    - name: Create VM
-      azure.azcollection.azure_rm_virtualmachine:
-        resource_group: "{{ resource_group_name }}"
-        name: "{{ vm_name }}"
         state: absent
