@@ -1,5 +1,5 @@
 ---
-- name: Create Azure VM
+- name: create an Azure VM
   hosts: localhost
   connection: local
   gather_facts: false
@@ -24,7 +24,7 @@
     allow_rdp: 'Allow'
     ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCffwOMWCjomX/ERSmbiFq6+i8gNL+A4sXB5vKqD1yCp6AEqsCD42Ag7x1NJ1i8hoPoebZxgWHI8PB0vih4tM0HnI3EKFNM6mKfb7Yue4su5ff/X81wcpVvt3Lk7CjGg16zZ0CQdn48zjmQK/NOosP0hzzoznnx8J/ClF2AauJanJQkoJsG7z9VDe0wqrZeDFb3r1Zx98npFGYJEwjSE9/LikAdVs9Ke8Z2kv1t/AwpO36VoHluz4j9VsqkO4sdKg1rPAu1IeKlqZXHCEFS49ZbWv3WbInvOtT1IbJk0iqGTWHY+2RGS1wFswzFPLfWG3YQFbwIwhyOGhZmxClQgBjKpY+NUleHXtwE3+T59+mBgGtzyMmmACZcBQG1JyXjA/FEkqR188CKFuOvEdlsI4zs0bcfQCWIHBNwmjX6bA39uozsNbn/bgZyC7KXk+2bmAaq6hn2cEsZUD+oDSVS0lcIW+GWIMuHFnjAQOvKYni2t7cIkKiciJ8bH5bwGt1aVnM="
   tasks:
-    - name: Create Network Security Group that allows SSH and RDP
+    - name: "create nsg: {{ network_sec_group_name }}"
       azure.azcollection.azure_rm_securitygroup:
         resource_group: "{{ resource_group_name }}"
         name: "{{ network_sec_group_name }}"
@@ -48,7 +48,7 @@
             priority: 1003
             direction: Inbound
 
-    - name: Create virtual network interface card
+    - name: "create virtual nic: {{ nic_name }}"
       azure.azcollection.azure_rm_networkinterface:
         resource_group: "{{ resource_group_name }}"
         name: "{{ nic_name }}"
@@ -56,7 +56,7 @@
         subnet: "{{ subnet_name }}"
         security_group: "{{ network_sec_group_name }}"
 
-    - name: Create VM
+    - name: "create VM: {{ vm_name }}"
       azure.azcollection.azure_rm_virtualmachine:
         resource_group: "{{ resource_group_name }}"
         name: "{{ vm_name }}"
