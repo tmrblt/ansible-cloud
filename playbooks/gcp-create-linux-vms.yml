@@ -17,7 +17,7 @@
     google.cloud.gcp_compute_disk:
       name: "disk{{ vm_name }}"
       size_gb: 50  
-      source_image: "projects/ubuntu-os-pro-cloud/global/images/ubuntu-pro-2204-jammy-v20231102" # projects/rhel-cloud/global/images/rhel-8-v20231010"
+      source_image: "projects/ubuntu-os-pro-cloud/global/images/ubuntu-pro-2004-focal-v20231101" # projects/rhel-cloud/global/images/rhel-8-v20231010"
       zone: "{{ gcp_zone }}"
       project: "{{ gcp_project }}"
       auth_kind: serviceaccount
