@@ -27,13 +27,13 @@
   - name: "create the VM instance: {{ vm_name }}"
     google.cloud.gcp_compute_instance:
       name: "{{ vm_name }}"
-      machine_type: e2-standard-4
+      machine_type: e2-medium
       disks:
       - auto_delete: 'true'
         boot: 'true'
         source: "{{ disk }}"
       - auto_delete: 'true'
-        interface: NVME
+        interface: SCSI
         type: SCRATCH
         initialize_params:
           disk_type: pd-standard
