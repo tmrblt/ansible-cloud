@@ -39,11 +39,11 @@
           disk_type: pd-standard
       labels:
         env: aap-demo
-      #network_interfaces:
-      #- network: 
-       #   selfLink: "{{ network_selflink }}"
-       # subnetwork: 
-        #  selfLink: "{{ subnet_selflink }}"
+      network_interfaces:
+      - network: 
+          selfLink: "{{ network_selflink }}"
+        subnetwork: 
+          selfLink: "{{ subnet_selflink }}"
       zone: "{{ gcp_zone }}"
       project: "{{ gcp_project }}"
       state: present
