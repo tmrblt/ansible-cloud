@@ -8,8 +8,8 @@
     gcp_zone: 'us-east1-b'
     gcp_region: 'us-east1'
     vm_name: 'demo-vm'
-    network_name: 'demo-vpc'
-    subnet_name: 'demo-subnet'
+    network_selflink: 'projects/openenv-czkgd/global/networks/demo-vpc'
+    subnet_selflink: 'projects/openenv-czkgd/regions/us-east1/subnetworks/demo-subnet'
   
   tasks:
   
@@ -23,43 +23,6 @@
       auth_kind: serviceaccount
       state: present
     register: disk
-
-  - name: create a google VPC network
-    google.cloud.gcp_compute_network:
-      name: "{{ network_name }}"
-      auto_create_subnetworks: False
-      project: "{{ gcp_project }}"
-      auth_kind: serviceaccount
-      state: present
-    register: network
-      
-  - name: create a subnetwork
-    google.cloud.gcp_compute_subnetwork:
-      name: "{{ subnet_name }}"
-      region: us-east1
-      network: "{{ network }}"
-      ip_cidr_range: 10.0.0.0/24
-      project: "{{ gcp_project }}"
-      auth_kind: serviceaccount
-      state: present
-    register: subnet
-
-  - name: create firewall rules to allow SSH,RDP,HTTPS,ICMP
-    google.cloud.gcp_compute_firewall:
-      name: vpc-firewall-rules
-      allowed:
-      - ip_protocol: icmp
-      - ip_protocol: tcp
-        ports:
-        - '22'
-        - '80'
-        - '443'
-        - '3389'
-      project: "{{ gcp_project }}"
-      network: "{{ network }}"
-      auth_kind: serviceaccount
-      state: present
-    register: firewall_rules
 
   - name: "create the VM instance: {{ vm_name }}"
     google.cloud.gcp_compute_instance:
@@ -77,7 +40,8 @@
       labels:
         env: aap-demo
       network_interfaces:
-      - network: "{{ network }}"
+      - network: "{{ network_selflink }}"
+        subnetwork: "{{ subnet_selflink }}"
       zone: "{{ gcp_zone }}"
       project: "{{ gcp_project }}"
       auth_kind: serviceaccount
