@@ -60,7 +60,7 @@
       ip_configurations:
       - name: ipconfig
         primary: true
-        private_ip_allocation_method: dynamic
+        private_ip_allocation_method: Dynamic
         dns_servers:
         - 8.8.8.8
 
