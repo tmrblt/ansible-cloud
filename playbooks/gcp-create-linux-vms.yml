@@ -40,8 +40,10 @@
       labels:
         env: aap-demo
       network_interfaces:
-      - network: "{{ network_selflink }}"
-        subnetwork: "{{ subnet_selflink }}"
+      - network: 
+          selfLink: "{{ network_selflink }}"
+        subnetwork: 
+          selfLink: "{{ subnet_selflink }}"
       zone: "{{ gcp_zone }}"
       project: "{{ gcp_project }}"
       auth_kind: serviceaccount
