@@ -18,13 +18,13 @@
     
   tasks:
   
-    - name: delete VM: "{{ vm_name }}"
+    - name: "delete VM: {{ vm_name }}"
       azure.azcollection.azure_rm_virtualmachine:
         resource_group: "{{ resource_group_name }}"
         name: "{{ vm_name }}"
         state: absent
 
-    - name: delete virtual nic: "{{ nic_name }}"
+    - name: "delete virtual nic: {{ nic_name }}"
       azure.azcollection.azure_rm_networkinterface:
         resource_group: "{{ resource_group_name }}"
         name: "{{ nic_name }}"
@@ -33,7 +33,7 @@
         security_group: "{{ network_sec_group_name }}"
         state: absent
         
-    - name: delete nsg: "{{ network_sec_group_name }}"
+    - name: "delete nsg: {{ network_sec_group_name }}"
       azure.azcollection.azure_rm_securitygroup:
         resource_group: "{{ resource_group_name }}"
         name: "{{ network_sec_group_name }}"
