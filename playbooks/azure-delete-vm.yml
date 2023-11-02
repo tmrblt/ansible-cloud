@@ -14,7 +14,7 @@
     allow_ssh: 'Allow'
     allow_https: 'Allow'
     allow_rdp: 'Allow'
-    tasks:
+  tasks:
     - name: Create Network Security Group that allows SSH and RDP
       azure.azcollection.azure_rm_securitygroup:
         resource_group: "{{ resource_group_name }}"
