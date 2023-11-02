@@ -69,7 +69,7 @@
         started: true
         ssh_password_enabled: true
         ssh_public_keys:
-          - path: /home/ansible/.ssh/authorized_keys
+          - path: "/home/{{ admin_user }}/.ssh/authorized_keys"
             key_data: "{{ ssh_key }}"
         tags:
           "name": "{{ vm_name }}"
