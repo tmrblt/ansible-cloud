@@ -75,7 +75,7 @@
         initialize_params:
           disk_type: pd-standard
       labels:
-      - env: aap-demo
+        env: aap-demo
       network_interfaces:
       - network: "{{ network }}"
       zone: "{{ gcp_zone }}"
