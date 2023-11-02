@@ -1,1 +1,85 @@
+---
+- name: Create Azure VM
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  vars:
+    resource_group_name: 'openenv-9kk9c'
+    network_resource_id: '/subscriptions/ede7f891-835c-4128-af5b-0e53848e54e7/resourceGroups/openenv-9kk9c/providers/Microsoft.Network/virtualNetworks/aap-vnet'
+    region: 'eastus'
+    vnet_cidr: '10.0.0.0/16'
+    subnet_cidr: '10.0.0.0/24'
+    vnet_name: 'aap-vnet'
+    subnet_name: 'default'
+    network_sec_group_name: "{{ vm_name }}_nsg"
+    vm_name: 'demo-vm'
+    vm_size: 'Standard_B2as_v2'
+    vm_sku: 'ntg_rhel_8_2'
+    public_ip_name: "{{ vm_name }}_public_ip"
+    nic_name: "{{ vm_name }}_nic"
+    admin_user: 'sysadmin'
+    admin_password: 'Passw0rd!'
+    allow_ssh: 'allow'
+    allow_https: 'allow'
+    allow_rdp: 'allow'
+    ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCffwOMWCjomX/ERSmbiFq6+i8gNL+A4sXB5vKqD1yCp6AEqsCD42Ag7x1NJ1i8hoPoebZxgWHI8PB0vih4tM0HnI3EKFNM6mKfb7Yue4su5ff/X81wcpVvt3Lk7CjGg16zZ0CQdn48zjmQK/NOosP0hzzoznnx8J/ClF2AauJanJQkoJsG7z9VDe0wqrZeDFb3r1Zx98npFGYJEwjSE9/LikAdVs9Ke8Z2kv1t/AwpO36VoHluz4j9VsqkO4sdKg1rPAu1IeKlqZXHCEFS49ZbWv3WbInvOtT1IbJk0iqGTWHY+2RGS1wFswzFPLfWG3YQFbwIwhyOGhZmxClQgBjKpY+NUleHXtwE3+T59+mBgGtzyMmmACZcBQG1JyXjA/FEkqR188CKFuOvEdlsI4zs0bcfQCWIHBNwmjX6bA39uozsNbn/bgZyC7KXk+2bmAaq6hn2cEsZUD+oDSVS0lcIW+GWIMuHFnjAQOvKYni2t7cIkKiciJ8bH5bwGt1aVnM="
+  tasks:
+    - name: Create Network Security Group that allows SSH and RDP
+      azure.azcollection.azure_rm_securitygroup:
+        resource_group: "{{ resource_group_name }}"
+        name: "{{ network_sec_group_name }}"
+        rules:
+          - name: ssh
+            protocol: Tcp
+            destination_port_range: 22
+            access: "{{ allow_ssh }}"
+            priority: 1001
+            direction: Inbound
+          - name: https
+            protocol: Tcp
+            destination_port_range: 443
+            access: "{{ allow_https }}"
+            priority: 1002
+            direction: Inbound
+          - name: rdp
+            protocol: Tcp
+            destination_port_range: 3389
+            access: "{{ allow_rdp }}"
+            priority: 1003
+            direction: Inbound
 
+    - name: Create virtual network interface card
+      azure.azcollection.azure_rm_networkinterface:
+        resource_group: "{{ resource_group_name }}"
+        name: "{{ nic_name }}"
+        virtual_network: "{{ vnet_name }}"
+        subnet: "{{ subnet_name }}"
+        security_group: "{{ network_sec_group_name }}"
+
+    - name: Create VM
+      azure.azcollection.azure_rm_virtualmachine:
+        resource_group: "{{ resource_group_name }}"
+        name: "{{ vm_name }}"
+        managed_disk_type: "Standard_LRS"
+        vm_size: "{{ vm_size }}"
+        admin_username: "{{ admin_user }}"
+        admin_password: "{{ admin_password }}"
+        network_interfaces: "{{ nic_name }}"
+        state: present
+        started: true
+        ssh_password_enabled: true
+        ssh_public_keys:
+          - path: /home/ansible/.ssh/authorized_keys
+            key_data: "{{ ssh_key }}"
+        tags:
+          "name": "{{ vm_name }}"
+          "demo": "true"
+          "os": "linux"
+          "username": "{{ admin_user }}"
+        image:
+          offer: 0001-com-ubuntu-server-focal
+          publisher: canonical
+          sku: 20_04-lts-gen2
+          version: latest
+        security_profile:
+          security_type: Standard
