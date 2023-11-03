@@ -95,6 +95,6 @@
         "demo": "true"
         "os": "linux"
         "username": "{{ admin_user }}"
-      image: "{{"{{ os_image }}"}}"
+      image: "{{ os_image }}"
       security_profile:
         security_type: Standard
