@@ -1,1 +1,8 @@
-
+---
+- name: retrieve info 
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: load retrieve info role
+      include_role:
+        name: "../roles/azure_retrieve_info"
