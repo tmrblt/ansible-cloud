@@ -95,6 +95,7 @@
         "demo": "true"
         "os": "linux"
         "username": "{{ admin_user }}"
+        "os_family": {%if 'ubuntu' in os_image %}ubuntu{%endif%}
       image: "{{ lookup('ansible.builtin.vars', os_image) }}"
       security_profile:
         security_type: Standard
