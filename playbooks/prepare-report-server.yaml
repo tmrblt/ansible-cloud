@@ -1,1 +1,31 @@
+---
+name: prepare report-server
+hosts: aap-db
+tasks:
 
+- name: install apache
+  become: true
+  yum:
+    name: httpd
+    state: present
+
+- name: change apache to specified port
+  become: true
+  lineinfile:
+    path: /etc/httpd/conf/httpd.conf
+    regexp: '^Listen '
+    insertafter: '^#Listen '
+    line: 'Listen {{web_port}}'
+
+- name: Set nis_enabled flag on and keep it persistent across reboots
+  become: true
+  seboolean:
+    name: nis_enabled
+    state: true
+    persistent: true
+
+- name: start httpd
+  become: true
+  service:
+    name: httpd
+    state: started
