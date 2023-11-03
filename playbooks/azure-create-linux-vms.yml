@@ -95,7 +95,7 @@
         "demo": "true"
         "os": "linux"
         "username": "{{ admin_user }}"
-        "os_family": "{{ 'ubuntu' if 'ubuntu' in os_image }}"
+        "os_family": "{{ 'rhel-family' if ('centos' or 'rhel') in os_image }}{{ 'debian-family' if ('ubuntu' or 'debian') in os_image }}"
       image: "{{ lookup('ansible.builtin.vars', os_image) }}"
       security_profile:
         security_type: Standard
