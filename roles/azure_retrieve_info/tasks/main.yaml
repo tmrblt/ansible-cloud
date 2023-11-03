@@ -1,9 +1,5 @@
 ---
-- name: Gather facts from all VMs
-  hosts: all
-  become: Yes
-  tasks:
-  - name: print facts
-    debug:
-      var: ansible_facts
+- name: print facts
+  debug:
+    var: ansible_facts
     
