@@ -1,42 +1,42 @@
 ---
-name: prepare report-server
-hosts: aap-db
-tasks:
+- name: prepare report-server
+  hosts: aap-db
+  tasks:
+ 
+  - name: install apache
+    become: true
+    yum:
+      name: httpd
+      state: present
 
-- name: install apache
-  become: true
-  yum:
-    name: httpd
-    state: present
+  - name: change apache to specified port
+    become: true
+    lineinfile:
+      path: /etc/httpd/conf/httpd.conf
+      regexp: '^Listen '
+      insertafter: '^#Listen '
+      line: 'Listen {{web_port}}'
+ 
+  - name: Set nis_enabled flag on and keep it persistent across reboots
+    become: true
+    seboolean:
+      name: nis_enabled
+      state: true
+      persistent: true
 
-- name: change apache to specified port
-  become: true
-  lineinfile:
-    path: /etc/httpd/conf/httpd.conf
-    regexp: '^Listen '
-    insertafter: '^#Listen '
-    line: 'Listen {{web_port}}'
+  - name: start httpd
+    become: true
+    service:
+      name: httpd
+      state: started
 
-- name: Set nis_enabled flag on and keep it persistent across reboots
-  become: true
-  seboolean:
-    name: nis_enabled
-    state: true
-    persistent: true
+  - name: retrieve public IP address
+    ansible.builtin.command: curl https://ifconfig.me
+    register: report_server_ip
+    ignore_errors: true
 
-- name: start httpd
-  become: true
-  service:
-    name: httpd
-    state: started
-
-- name: retrieve public IP address
-  ansible.builtin.command: curl https://ifconfig.me
-  register: report_server_ip
-  ignore_errors: true
-
-- name: display link to inventory report
-  debug:
-    msg:
-      - "Please go to http://{{ report_server_ip.stdout | default(ansible_fqdn) }}:{{ web_port }}"
+  - name: display link to inventory report
+    debug:
+      msg:
+        - "Please go to http://{{ report_server_ip.stdout | default(ansible_fqdn) }}:{{ web_port }}"
 
