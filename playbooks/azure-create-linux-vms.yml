@@ -28,10 +28,10 @@
       publisher: canonical
       sku: 20_04-lts-gen2
       version: latest
-    centos_7_1:
+    centos_7_5:
       offer: CentOS
       publisher: OpenLogic
-      sku: '7.1'
+      sku: '7.5'
       version: latest
       
   tasks: 
