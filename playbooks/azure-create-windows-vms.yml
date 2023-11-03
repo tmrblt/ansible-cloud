@@ -102,7 +102,7 @@
       tags:
         "name": "{{ vm_name }}"
         "demo": "true"
-        "os": "{{ 'windows_2019' if 'w2k19' in os_image }}{{ 'windows_2022' if 'w2k22' in os_image }}
+        "os": "{{ 'windows_2019' if 'w2k19' in os_image }}{{ 'windows_2022' if 'w2k22' in os_image }}"
         "os_type": "windows"
         "os_family": "windows"
         "username": "{{ admin_user }}"
