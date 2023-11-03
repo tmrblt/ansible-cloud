@@ -1,6 +1,7 @@
 ---
 - name: prepare report-server
   hosts: aap-db
+  become: true
   tasks:
  
   - name: install apache
