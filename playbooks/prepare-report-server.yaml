@@ -29,3 +29,14 @@ tasks:
   service:
     name: httpd
     state: started
+
+- name: retrieve public IP address
+  ansible.builtin.command: curl https://ifconfig.me
+  register: report_server_ip
+  ignore_errors: true
+
+- name: display link to inventory report
+  debug:
+    msg:
+      - "Please go to http://{{ report_server_ip.stdout | default(ansible_fqdn) }}:{{ web_port }}"
+
