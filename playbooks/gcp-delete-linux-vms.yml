@@ -18,7 +18,6 @@
       name: "{{ vm_name }}"
       zone: "{{ gcp_zone }}"
       project: "{{ gcp_project }}"
-      auth_kind: serviceaccount
       state: absent
 
   - name: delete a disk
