@@ -2,7 +2,6 @@
 - name: Gather facts from all VMs
   hosts: all
   become: Yes
-  gather_facts: True
   tasks:
   - name: print facts
     debug:
