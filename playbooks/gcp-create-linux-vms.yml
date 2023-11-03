@@ -33,10 +33,10 @@
         boot: 'true'
         source: "{{ disk }}"
       - auto_delete: 'true'
-        interface: SCSI
+        interface: NVME
         type: SCRATCH
         initialize_params:
-          disk_type: pd-standard
+          disk_type: local-ssd
       labels:
         env: aap-demo
       network_interfaces:
