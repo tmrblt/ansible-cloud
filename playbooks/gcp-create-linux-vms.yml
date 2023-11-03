@@ -27,7 +27,7 @@
   - name: "create the VM instance: {{ vm_name }}"
     google.cloud.gcp_compute_instance:
       name: "{{ vm_name }}"
-      machine_type: e2-medium
+      machine_type: n1-standard-1
       disks:
       - auto_delete: 'true'
         boot: 'true'
