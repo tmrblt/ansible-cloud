@@ -34,7 +34,7 @@
         source: "{{ disk }}"
       - auto_delete: 'true'
         interface: NVME
-        type: SCRATCH
+        type: PERSISTENT
         initialize_params:
           disk_type: local-ssd
       labels:
