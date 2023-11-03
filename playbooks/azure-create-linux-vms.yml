@@ -93,8 +93,8 @@
       tags:
         "name": "{{ vm_name }}"
         "demo": "true"
+        "os": "{{ 'rhel' if 'rhel' in os_image }}{{ 'centos' if 'centos' in os_image }}{{ 'ubuntu' if 'ubuntu' in os_image }}{{ 'debian' if 'debian' in os_image }}"
         "os_type": "linux"
-        "os": "{{ 'rhel' if 'rhel' in os_image }}{{ 'centos' if 'centos' in os_image }}{{ 'ubuntu' if 'ubuntu' in os_image }}{{ 'debian' if 'debian' in os_image }}
         "os_family": "{{ 'rhel-family' if ('centos' or 'rhel') in os_image }}{{ 'debian-family' if ('ubuntu' or 'debian') in os_image }}"
         "username": "{{ admin_user }}"
       image: "{{ lookup('ansible.builtin.vars', os_image) }}"
