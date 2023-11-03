@@ -34,7 +34,7 @@
       sku: '7.1'
       version: latest
       
-  tasks:
+  tasks: 
   
   - name: "create nsg: {{ network_sec_group_name }}"
     azure.azcollection.azure_rm_securitygroup:
@@ -95,6 +95,6 @@
         "demo": "true"
         "os": "linux"
         "username": "{{ admin_user }}"
-      image: "{{ os_image }}"
+      image: "{{ lookup('ansible.builtin.vars', os_image) }}"
       security_profile:
         security_type: Standard
