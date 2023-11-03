@@ -36,7 +36,7 @@
         interface: NVME
         type: SCRATCH
         initialize_params:
-          disk_type: local-ssd
+          disk_type: pd-standard
       labels:
         env: aap-demo
       network_interfaces:
