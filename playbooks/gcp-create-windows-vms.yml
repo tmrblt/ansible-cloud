@@ -1,0 +1,52 @@
+---
+- name: create VMs on GCP
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  vars:
+    gcp_project: 'openenv-czkgd'
+    gcp_zone: 'us-east1-b'
+    gcp_region: 'us-east1'
+    vm_name: 'demo-vm'
+    network_selflink: 'projects/openenv-czkgd/global/networks/demo-vpc'
+    subnet_selflink: 'projects/openenv-czkgd/regions/us-east1/subnetworks/demo-subnet'
+    ubuntu_20_04: projects/ubuntu-os-pro-cloud/global/images/ubuntu-pro-2004-focal-v20231101
+    rhel_8_8: projects/rhel-cloud/global/images/rhel-8-v20231010
+    windows_2022: projects/rhel-cloud/global/images/windows-server-2022-dc-v20231011
+      
+  tasks:
+  
+  - name: create a disk
+    google.cloud.gcp_compute_disk:
+      name: "disk{{ vm_name }}"
+      size_gb: 50  
+      source_image: "{{ lookup('ansible.builtin.vars', os_image) }}"
+      zone: "{{ gcp_zone }}"
+      project: "{{ gcp_project }}"
+      auth_kind: serviceaccount
+      state: present
+    register: disk
+
+  - name: "create the VM instance: {{ vm_name }}"
+    google.cloud.gcp_compute_instance:
+      name: "{{ vm_name }}"
+      machine_type: n2-standard-2
+      disks:
+      - auto_delete: 'true'
+        boot: 'true'
+        source: "{{ disk }}"
+      - auto_delete: 'true'
+        interface: SCSI
+        type: SCRATCH
+        initialize_params:
+          disk_type: pd-standard
+      labels:
+        env: aap-demo
+      network_interfaces:
+      - network: 
+          selfLink: "{{ network_selflink }}"
+        subnetwork: 
+          selfLink: "{{ subnet_selflink }}"
+      zone: "{{ gcp_zone }}"
+      project: "{{ gcp_project }}"
+      state: present
