@@ -10,8 +10,6 @@
     vm_name: 'demo-vm'
     network_selflink: 'projects/openenv-czkgd/global/networks/demo-vpc'
     subnet_selflink: 'projects/openenv-czkgd/regions/us-east1/subnetworks/demo-subnet'
-    ubuntu_20_04: projects/ubuntu-os-pro-cloud/global/images/ubuntu-pro-2004-focal-v20231101
-    rhel_8_8: projects/rhel-cloud/global/images/rhel-8-v20231010
     windows_2022: projects/rhel-cloud/global/images/windows-server-2022-dc-v20231011
       
   tasks:
@@ -48,5 +46,8 @@
         subnetwork: 
           selfLink: "{{ subnet_selflink }}"
       zone: "{{ gcp_zone }}"
+      metadata:
+        sysprep-specialize-script-cmd: googet -noconfirm=true install google-compute-engine-ssh
+        enable-windows-ssh: True
       project: "{{ gcp_project }}"
       state: present
