@@ -47,7 +47,15 @@
           selfLink: "{{ subnet_selflink }}"
       zone: "{{ gcp_zone }}"
       metadata:
-        sysprep-specialize-script-cmd: 'googet -noconfirm=true install google-compute-engine-ssh'
-        enable-windows-ssh: TRUE
+        windows-startup-script-ps1: |
+          # Installing IIS
+          Import-Module servermanager 
+          Install-WindowsFeature Web-Server -IncludeAllSubFeature
+
+          # Ensure the directory exists
+          if (-not (Test-Path("C:\inetpub\wwwroot"))) {New-Item "C:\inetpub\wwwroot" -Type Directory}
+
+          # Write the expanded string out to the file, overwriting the file if it already exists.
+          "<html><body><p>Windows startup script added directly.</p></body></html>" | Out-File -FilePath C:\inetpub\wwwroot\index.html -Encoding ascii -Force
       project: "{{ gcp_project }}"
       state: present
