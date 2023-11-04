@@ -10,11 +10,11 @@
     vm_name: 'demo-vm'
     network_selflink: 'projects/openenv-czkgd/global/networks/demo-vpc'
     subnet_selflink: 'projects/openenv-czkgd/regions/us-east1/subnetworks/demo-subnet'
-    windows_2022: 'projects/rhel-cloud/global/images/windows-server-2022-dc-v20231011'
+    windows_2022: 'projects/windows-cloud/global/images/windows-server-2022-dc-v20231011'
       
   tasks:
   
-  - name: create a disk
+- name: create a disk
     google.cloud.gcp_compute_disk:
       name: "disk{{ vm_name }}"
       size_gb: 50  
