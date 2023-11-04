@@ -10,7 +10,7 @@
     vm_name: 'demo-vm'
     network_selflink: 'projects/openenv-czkgd/global/networks/demo-vpc'
     subnet_selflink: 'projects/openenv-czkgd/regions/us-east1/subnetworks/demo-subnet'
-    windows_2022: projects/rhel-cloud/global/images/windows-server-2022-dc-v20231011
+    windows_2022: 'projects/rhel-cloud/global/images/windows-server-2022-dc-v20231011'
       
   tasks:
   
