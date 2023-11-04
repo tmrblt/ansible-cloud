@@ -47,7 +47,7 @@
           selfLink: "{{ subnet_selflink }}"
       zone: "{{ gcp_zone }}"
       metadata:
-        sysprep-specialize-script-cmd: googet -noconfirm=true install google-compute-engine-ssh
+        sysprep-specialize-script-cmd: 'googet -noconfirm=true install google-compute-engine-ssh'
         enable-windows-ssh: True
       project: "{{ gcp_project }}"
       state: present
