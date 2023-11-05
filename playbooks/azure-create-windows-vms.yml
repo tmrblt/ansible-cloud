@@ -1,8 +1,7 @@
 ---
-- name: create an Azure VM
+- name: Create Azure VM
   hosts: localhost
   connection: local
-  gather_facts: false
   vars:
     resource_group_name: 'openenv-9kk9c'
     network_resource_id: '/subscriptions/ede7f891-835c-4128-af5b-0e53848e54e7/resourceGroups/openenv-9kk9c/providers/Microsoft.Network/virtualNetworks/aap-vnet'
@@ -27,11 +26,12 @@
         publisher: MicrosoftWindowsServer
         sku: 2019-Datacenter
         version: latest
-      
-  tasks: 
+        
+  tasks:
+
   
-  - name: "create nsg: {{ network_sec_group_name }}"
-    azure.azcollection.azure_rm_securitygroup:
+  - name: Create Network Security Group
+    azure_rm_securitygroup:
       resource_group: "{{ resource_group_name }}"
       name: "{{ network_sec_group_name }}"
       rules:
@@ -39,7 +39,7 @@
           protocol: Tcp
           destination_port_range: 3389
           access: Allow
-          priority: 1005
+          priority: 1001
           direction: Inbound
         - name: 'allow_web_traffic'
           protocol: Tcp
@@ -47,7 +47,7 @@
             - 80
             - 443
           access: Allow
-          priority: 1006
+          priority: 1002
           direction: Inbound
         - name: 'allow_powershell_remoting'
           protocol: Tcp
@@ -58,26 +58,29 @@
           priority: 1003
           direction: Inbound
 
-  - name: "create virtual nic: {{ nic_name }}"
-    azure.azcollection.azure_rm_networkinterface:
+  - name: Create a network interface
+    azure_rm_networkinterface:
+      name: nic
       resource_group: "{{ resource_group_name }}"
-      name: "{{ nic_name }}"
       virtual_network: "{{ vnet_name }}"
-      subnet: "{{ subnet_name }}"
+      subnet_name: "{{ subnet_name }}"
       security_group: "{{ network_sec_group_name }}"
 
-  - name: "create VM: {{ vm_name }}"
-    azure.azcollection.azure_rm_virtualmachine:
+  - name: Create VM
+    azure_rm_virtualmachine:
       resource_group: "{{ resource_group_name }}"
       name: "{{ vm_name }}"
-      managed_disk_type: "Standard_LRS"
-      vm_size: "{{ vm_size }}"
+      vm_size: Standard_DS1_v2
       admin_username: "{{ admin_user }}"
       admin_password: "{{ admin_password }}"
       network_interfaces: "{{ nic_name }}"
-      image: "{{ lookup('ansible.builtin.vars', os_image) }}"
-    
-  
+      os_type: Windows
+      image:
+          offer: WindowsServer
+          publisher: MicrosoftWindowsServer
+          sku: 2019-Datacenter
+          version: latest
+
   - name: Create VM script extension to enable HTTPS WinRM listener
     azure_rm_virtualmachineextension:
       name: winrm-extension
