@@ -114,7 +114,7 @@
       auto_upgrade_minor_version: true
 
 - name: Get facts for one Public IP
-  azure.azcollection.azure_rm_publicipaddress_info:
+  azure_rm_publicipaddress_info:
     resource_group: "{{ resource_group_name }}"
     name: "{{ vm_name }}_public_ip"
   register: publicipaddresses
