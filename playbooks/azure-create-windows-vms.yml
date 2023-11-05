@@ -23,16 +23,6 @@
     allow_https: 'Allow'
     allow_rdp: 'Allow'
     ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCo4AcnaTev9s3XniFXBymq+UOwTjnIol6U36PHaCiJdPohDeHQKYpg1vIB8IXNnqKemVN9gjTmEHU6Ri5nn9wG55qC/rXvKkT9oqO2FKyPkVPYe2BqyuhBj5ilEIMMYDv1spQ2PfeQWmBoGRIzY+2GCExEkf8acbzzH1mNtu7QzbV00cowf/Q14VGB/hVCg1y2y9hndcRtUT3ajl92gMd/06Ebm381guBiY9DMBj9ghhZQeKC5kr4TUahuqM7zmvLcvBsFSGOYT27IOILiRMF6HD/DthX41t+KDf7EYKlGycjnWFVtvOKm6sCHeoFaFPjP/RNauqYMmdhxKwT4QxE8rNAIAU0L2pdWKqYg5WqfpqQsKZleHYH+gaijUusCW9pMkCxMJwxz5gw1520KxOiUKli2e6oL1psff8+7eDuDQmNtAS4XWnciemoK06zqy7uds1/szZi/EGzi7jLVuBGG3ZZYPrknDg57heCvaF5rgW7aN5OzNE3Hq/DlKErzBwk= sysadmin@t490s.home.local"
-    ubuntu_20_04:      
-      offer: 0001-com-ubuntu-server-focal
-      publisher: canonical
-      sku: 20_04-lts-gen2
-      version: latest
-    centos_7_5:
-      offer: CentOS
-      publisher: OpenLogic
-      sku: '7.5'
-      version: latest
     w2k19_dc:
         offer: WindowsServer
         publisher: MicrosoftWindowsServer
@@ -119,5 +109,5 @@
       publisher: Microsoft.Compute
       virtual_machine_extension_type: CustomScriptExtension
       type_handler_version: '1.9'
-      settings: '{"fileUris": ["https://raw.githubusercontent.com/ansible/ansible/devel/examples/scripts/ConfigureRemotingForAnsible.ps1"],"commandToExecute": "powershell -ExecutionPolicy Unrestricted -File ConfigureRemotingForAnsible.ps1"}'
+      settings: '{"fileUris": ["https://raw.githubusercontent.com/AlbanAndrieu/ansible-windows/master/files/ConfigureRemotingForAnsible.ps1"],"commandToExecute": "powershell -ExecutionPolicy Unrestricted -File ConfigureRemotingForAnsible.ps1"}'
       auto_upgrade_minor_version: true
