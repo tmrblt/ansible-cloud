@@ -35,26 +35,28 @@
       resource_group: "{{ resource_group_name }}"
       name: "{{ network_sec_group_name }}"
       rules:
-      - name: https
-        protocol: Tcp
-        destination_port_range: 443
-        access: "{{ allow_https }}"
-        priority: 1002
-        direction: Inbound
-      - name: rdp
-        protocol: Tcp
-        destination_port_range: 3389
-        access: "{{ allow_rdp }}"
-        priority: 1003
-        direction: Inbound
-      - name: winrm
-        protocol: Tcp
-        destination_port_range:
-          - 5985
-          - 5986
-        access: "{{ allow_rdp }}"
-        priority: 1004
-        direction: Inbound
+        - name: 'allow_rdp'
+          protocol: Tcp
+          destination_port_range: 3389
+          access: Allow
+          priority: 1001
+          direction: Inbound
+        - name: 'allow_web_traffic'
+          protocol: Tcp
+          destination_port_range:
+            - 80
+            - 443
+          access: Allow
+          priority: 1002
+          direction: Inbound
+        - name: 'allow_powershell_remoting'
+          protocol: Tcp
+          destination_port_range: 
+            - 5985
+            - 5986
+          access: Allow
+          priority: 1003
+          direction: Inbound
 
   - name: "create virtual nic: {{ nic_name }}"
     azure.azcollection.azure_rm_networkinterface:
@@ -68,7 +70,7 @@
     azure.azcollection.azure_rm_virtualmachine:
       resource_group: "{{ resource_group_name }}"
       name: "{{ vm_name }}"
-      managed_disk_type: "Standard_LRS"
+      managed_disk_type: "Standard_DS1_v2"
       vm_size: "{{ vm_size }}"
       admin_username: "{{ admin_user }}"
       admin_password: "{{ admin_password }}"
