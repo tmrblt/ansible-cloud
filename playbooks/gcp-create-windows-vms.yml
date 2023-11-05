@@ -57,5 +57,6 @@
 
           # Write the expanded string out to the file, overwriting the file if it already exists.
           "<html><body><p>Windows startup script added directly.</p></body></html>" | Out-File -FilePath C:\inetpub\wwwroot\index.html -Encoding ascii -Force
+          New-NetFirewallRule -DisplayName 'HTTP-Inbound' -Profile @('Domain', 'Private', 'Public') -Direction Inbound -Action Allow -Protocol TCP -LocalPort @('80', '443')
       project: "{{ gcp_project }}"
       state: present
