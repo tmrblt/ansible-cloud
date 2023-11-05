@@ -73,19 +73,8 @@
       admin_username: "{{ admin_user }}"
       admin_password: "{{ admin_password }}"
       network_interfaces: "{{ nic_name }}"
-      state: present
-      started: true
-      tags:
-        "name": "{{ vm_name }}"
-        "demo": "true"
-        "os": "{{ 'windows_2019' if 'w2k19' in os_image }}{{ 'windows_2022' if 'w2k22' in os_image }}"
-        "os_type": "windows"
-        "os_family": "windows"
-        "username": "{{ admin_user }}"
       image: "{{ lookup('ansible.builtin.vars', os_image) }}"
-      security_profile:
-        security_type: Standard
-    no_log: true
+    
   
   - name: Create VM script extension to enable HTTPS WinRM listener
     azure_rm_virtualmachineextension:
