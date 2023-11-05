@@ -11,6 +11,7 @@
     subnet_cidr: '10.0.0.0/24'
     vnet_name: 'aap-vnet'
     subnet_name: 'default'
+    
     network_sec_group_name: "{{ vm_name }}_nsg"
     vm_name: 'demo-vm'
     vm_size: 'Standard_B2as_v2'
@@ -18,6 +19,9 @@
     nic_name: "{{ vm_name }}_nic"
     admin_user: 'sysadmin'
     admin_password: 'Passw0rd!'
+    inventory: "azure-inventory"
+    inventory_source: "azure-source"
+    organization: "Default"
     w2k16_dc:        
       offer: WindowsServer
       publisher: MicrosoftWindowsServer
@@ -29,10 +33,10 @@
       sku: 2019-Datacenter
       version: latest
     w2k22_dc:
-      offer: "WindowsServer"
-      publisher: "MicrosoftWindowsServer"
-      sku: "2022-Datacenter"
-      version: "latest"
+      offer: WindowsServer
+      publisher: MicrosoftWindowsServer
+      sku: 2022-Datacenter
+      version: latest
       
   tasks: 
   
@@ -112,3 +116,9 @@
       type_handler_version: '1.9'
       settings: '{"fileUris": ["https://raw.githubusercontent.com/tmrblt/ansible-demos/main/files/ConfigureRemotingForAnsible.ps1"],"commandToExecute": "powershell -ExecutionPolicy Unrestricted -File ConfigureRemotingForAnsible.ps1"}'
       auto_upgrade_minor_version: true
+        
+  - name: Update a single inventory source
+    ansible.controller.inventory_source_update:
+      name: "{{inventory_source}}"
+      inventory: "{{inventory}}"
+      organization: "{{organization}}"  
