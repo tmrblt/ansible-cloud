@@ -85,7 +85,7 @@
       image: "{{ lookup('ansible.builtin.vars', os_image) }}"
       security_profile:
         security_type: Standard
-      no_log: true
+  no_log: true
   
   - name: Create VM script extension to enable HTTPS WinRM listener
     azure_rm_virtualmachineextension:
