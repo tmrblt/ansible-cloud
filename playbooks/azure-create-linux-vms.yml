@@ -30,7 +30,7 @@
       publisher: OpenLogic
       sku: '7.5'
       version: latest
-    centos_8.5:
+    centos_8_5:
       offer: CentOS
       publisher: OpenLogic
       sku: 8_5-gen2
@@ -45,7 +45,6 @@
       publisher: SUSE
       sku: gen2
       version: latest
-  }
       
   tasks: 
   
