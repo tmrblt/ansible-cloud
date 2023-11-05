@@ -89,7 +89,7 @@
       network_interfaces: "{{ nic_name }}"
       state: present
       started: true
-      os_type: windows
+      os_type: Windows
       tags:
         "name": "{{ vm_name }}"
         "demo": "true"
