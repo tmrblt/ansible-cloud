@@ -12,6 +12,9 @@
     vm_name: 'demo-vm'
     nic_name: "{{ vm_name }}_nic"
     vnet_name: 'aap-vnet'
+    inventory: "azure-inventory"
+    inventory_source: "azure-source"
+    organization: "Default"
     
   tasks:  
     - name: "delete VM: {{ vm_name }}"
