@@ -12,12 +12,8 @@
     vm_name: 'demo-vm'
     nic_name: "{{ vm_name }}_nic"
     vnet_name: 'aap-vnet'
-    allow_ssh: 'Allow'
-    allow_https: 'Allow'
-    allow_rdp: 'Allow'
     
-  tasks:
-  
+  tasks:  
     - name: "delete VM: {{ vm_name }}"
       azure.azcollection.azure_rm_virtualmachine:
         resource_group: "{{ resource_group_name }}"
@@ -38,3 +34,9 @@
         resource_group: "{{ resource_group_name }}"
         name: "{{ network_sec_group_name }}"
         state: absent
+        
+    - name: Update a single inventory source
+      ansible.controller.inventory_source_update:
+        name: "{{inventory_source}}"
+        inventory: "{{inventory}}"
+        organization: "{{organization}}"  
