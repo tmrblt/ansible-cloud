@@ -90,6 +90,7 @@
       ssh_public_keys:
       - path: "/home/{{ admin_user }}/.ssh/authorized_keys"
         key_data: "{{ ssh_key }}"
+      os_type: Linux
       tags:
         "name": "{{ vm_name }}"
         "demo": "true"
