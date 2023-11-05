@@ -119,7 +119,7 @@
         security_type: Standard
         
   - name: Update a single inventory source
-    inventory_source_update:
+    ansible.controller.inventory_source_update:
       name: "azure-source"
       inventory: "azure-inventory"
       organization: Default  
