@@ -23,6 +23,11 @@
     allow_https: 'Allow'
     allow_rdp: 'Allow'
     ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCo4AcnaTev9s3XniFXBymq+UOwTjnIol6U36PHaCiJdPohDeHQKYpg1vIB8IXNnqKemVN9gjTmEHU6Ri5nn9wG55qC/rXvKkT9oqO2FKyPkVPYe2BqyuhBj5ilEIMMYDv1spQ2PfeQWmBoGRIzY+2GCExEkf8acbzzH1mNtu7QzbV00cowf/Q14VGB/hVCg1y2y9hndcRtUT3ajl92gMd/06Ebm381guBiY9DMBj9ghhZQeKC5kr4TUahuqM7zmvLcvBsFSGOYT27IOILiRMF6HD/DthX41t+KDf7EYKlGycjnWFVtvOKm6sCHeoFaFPjP/RNauqYMmdhxKwT4QxE8rNAIAU0L2pdWKqYg5WqfpqQsKZleHYH+gaijUusCW9pMkCxMJwxz5gw1520KxOiUKli2e6oL1psff8+7eDuDQmNtAS4XWnciemoK06zqy7uds1/szZi/EGzi7jLVuBGG3ZZYPrknDg57heCvaF5rgW7aN5OzNE3Hq/DlKErzBwk= sysadmin@t490s.home.local"
+    w2k16_dc:        
+      offer: WindowsServer
+      publisher: MicrosoftWindowsServer
+      sku: 2022-Datacenter
+      version: latest
     w2k19_dc:
       offer: WindowsServer
       publisher: MicrosoftWindowsServer
