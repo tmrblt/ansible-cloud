@@ -14,15 +14,10 @@
     network_sec_group_name: "{{ vm_name }}_nsg"
     vm_name: 'demo-vm'
     vm_size: 'Standard_B2as_v2'
-    vm_sku: 'ntg_rhel_8_2'
     public_ip_name: "{{ vm_name }}_public_ip"
     nic_name: "{{ vm_name }}_nic"
     admin_user: 'sysadmin'
     admin_password: 'Passw0rd!'
-    allow_ssh: 'Allow'
-    allow_https: 'Allow'
-    allow_rdp: 'Allow'
-    ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCo4AcnaTev9s3XniFXBymq+UOwTjnIol6U36PHaCiJdPohDeHQKYpg1vIB8IXNnqKemVN9gjTmEHU6Ri5nn9wG55qC/rXvKkT9oqO2FKyPkVPYe2BqyuhBj5ilEIMMYDv1spQ2PfeQWmBoGRIzY+2GCExEkf8acbzzH1mNtu7QzbV00cowf/Q14VGB/hVCg1y2y9hndcRtUT3ajl92gMd/06Ebm381guBiY9DMBj9ghhZQeKC5kr4TUahuqM7zmvLcvBsFSGOYT27IOILiRMF6HD/DthX41t+KDf7EYKlGycjnWFVtvOKm6sCHeoFaFPjP/RNauqYMmdhxKwT4QxE8rNAIAU0L2pdWKqYg5WqfpqQsKZleHYH+gaijUusCW9pMkCxMJwxz5gw1520KxOiUKli2e6oL1psff8+7eDuDQmNtAS4XWnciemoK06zqy7uds1/szZi/EGzi7jLVuBGG3ZZYPrknDg57heCvaF5rgW7aN5OzNE3Hq/DlKErzBwk= sysadmin@t490s.home.local"
     w2k16_dc:        
       offer: WindowsServer
       publisher: MicrosoftWindowsServer
@@ -46,31 +41,27 @@
       resource_group: "{{ resource_group_name }}"
       name: "{{ network_sec_group_name }}"
       rules:
-      - name: ssh
-        protocol: Tcp
-        destination_port_range: 22
-        access: "{{ allow_ssh }}"
-        priority: 1001
-        direction: Inbound
       - name: https
         protocol: Tcp
-        destination_port_range: 443
-        access: "{{ allow_https }}"
-        priority: 1002
+        destination_port_range:
+        - 443
+        - 80
+        access: 'Allow'
+        priority: 1001
         direction: Inbound
       - name: rdp
         protocol: Tcp
         destination_port_range: 3389
-        access: "{{ allow_rdp }}"
-        priority: 1003
+        access: 'Allow'
+        priority: 1002
         direction: Inbound
       - name: winrm
         protocol: Tcp
         destination_port_range:
-          - 5985
-          - 5986
-        access: "{{ allow_rdp }}"
-        priority: 1004
+        - 5985
+        - 5986
+        access: 'Allow'
+        priority: 1003
         direction: Inbound
 
   - name: "create virtual nic: {{ nic_name }}"
@@ -84,7 +75,6 @@
       ip_configurations:
       - name: ipconfig
         primary: true
-        #public_ip_address_name: "{{ vm_name }}_public_ip"
         private_ip_allocation_method: Dynamic
       dns_servers:
       - 8.8.8.8
