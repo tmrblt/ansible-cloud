@@ -70,10 +70,11 @@
       virtual_network: "{{ vnet_name }}"
       subnet: "{{ subnet_name }}"
       security_group: "{{ network_sec_group_name }}"
-      public_ip: false
+      public_ip: true      
       ip_configurations:
       - name: ipconfig
         primary: true
+        public_ip_address_name: "{{ vm_name }}_public_ip"
         private_ip_allocation_method: Dynamic
       dns_servers:
       - 8.8.8.8
