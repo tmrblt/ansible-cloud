@@ -118,3 +118,9 @@
       image: "{{ lookup('ansible.builtin.vars', os_image) }}"
       security_profile:
         security_type: Standard
+        
+  - name: Update a single inventory source
+    inventory_source_update:
+      name: "azure-source"
+      inventory: "azure-inventory"
+      organization: Default  
