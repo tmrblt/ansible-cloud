@@ -20,6 +20,9 @@
     nic_name: "{{ vm_name }}_nic"
     admin_user: 'sysadmin'
     admin_password: 'Passw0rd!'
+    inventory: "azure-inventory"
+    inventory_source: "azure-source"
+    organization: "Default"
     ubuntu_20_04:      
       offer: 0001-com-ubuntu-server-focal
       publisher: canonical
@@ -120,6 +123,6 @@
         
   - name: Update a single inventory source
     ansible.controller.inventory_source_update:
-      name: "azure-source"
-      inventory: "azure-inventory"
-      organization: Default  
+      name: "{{inventory_source}}"
+      inventory: "{{inventory}}"
+      organization: "{{organization}}"  
