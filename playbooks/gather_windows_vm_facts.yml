@@ -11,4 +11,4 @@
     
   - name: print vars
     debug:
-      var: hostvars
+      var: hostvars[inventory.hostname]
