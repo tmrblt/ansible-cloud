@@ -5,5 +5,5 @@
   tasks:
     - name: print report
       debug:
-        msg: "{{ hostvars[inventory_hostname]['config.name'] }} - {{ hostvars[inventory_hostname]['guest.guestFullName'] }} - {{ ansible_facts.uptimeSeconds | to_days }}"
+        msg: "{{ hostvars[inventory_hostname]['config.name'] }} - {{ hostvars[inventory_hostname]['guest.guestFullName'] }} - {{ ansible_facts.uptimeSeconds | community.general.to_days }}"
 
