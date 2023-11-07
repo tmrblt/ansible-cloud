@@ -7,5 +7,5 @@
       ansible.builtin.template:
         src: templates/vmware_inventory_report.j2
         dest: /var/www/html/vmware_inventory_report.html
-      delegate_to: "{{ report-server }}"
+      delegate_to: "{{ report_server }}"
       run_once: true
