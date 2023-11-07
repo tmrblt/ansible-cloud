@@ -37,6 +37,12 @@
       enabled: true
       state: restarted
 
+  - name: Remove file (delete file)
+    ansible.builtin.copy:
+      content: "This is a report server."
+      dest: /var/www/html/index.html
+      state: present
+
   - name: display link to inventory report
     debug:
       msg:
