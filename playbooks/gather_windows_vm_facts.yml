@@ -1,8 +1,14 @@
 ---
 - name: gather windows vm facts
   hosts: windows_servers
+  
   tasks:
+  
   - name: print facts
     debug:
       var: ansible_facts
     when: hostvars[inventory_hostname].powerState == 'poweredOn'
+    
+  - name: print vars
+    debug:
+      var: hostvars[inventory_hostname]
