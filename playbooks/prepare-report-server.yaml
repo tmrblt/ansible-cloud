@@ -19,13 +19,6 @@
       regexp: '^Listen '
       insertafter: '^#Listen '
       line: 'Listen {{web_port}}'
- 
-  - name: Set nis_enabled flag on and keep it persistent across reboots
-    become: true
-    seboolean:
-      name: nis_enabled
-      state: true
-      persistent: true
 
   - name: start httpd
     become: true
@@ -33,13 +26,8 @@
       name: httpd
       state: started
 
-  - name: retrieve public IP address
-    ansible.builtin.command: curl https://ifconfig.me
-    register: report_server_ip
-    ignore_errors: true
-
   - name: display link to inventory report
     debug:
       msg:
-        - "Please go to http://{{ report_server_ip.stdout | default(ansible_fqdn) }}:{{ web_port }}"
+        - "Please go to http://{{ ansible_host':'web_port }}" to view the report
 
