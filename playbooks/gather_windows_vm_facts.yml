@@ -1,6 +1,6 @@
 ---
 - name: gather windows vm facts
-  hosts: windows_servers
+  hosts: windows-servers
   tasks:
   - name: print facts
     debug:
