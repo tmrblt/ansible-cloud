@@ -1,0 +1,10 @@
+---
+- name: Gather facts from all VMs
+  hosts: all
+  tasks:
+    - name: print report
+      debug:
+        var: "{{ hostvars[inventory_name][item] }} - "
+      loop:
+      - config.name
+      - guest.guestFullName

@@ -1,9 +1,0 @@
----
-- name: Gather facts from all VMs
-  hosts: all
-  become: Yes
-  gather_facts: true
-  tasks:
-    - name: load retrieve info role
-      include_role:
-        name: "../roles/azure_retrieve_info"
