@@ -1,1 +1,20 @@
+- name: linux patch report
+  hosts: linux
+  gather_facts: true
+  vars:
+    updatelist: []
+  tasks:
+    - name: list updates
+      yum:
+        list: updates
+        use_backend: yum3
+      register: update_result
+    
+    - debug: var=update_result
+    
+    - debug: var=ansible_facts
 
+    - name: create array for updates
+      set_fact:
+        updatelist: "{{ update_result.results | map(attribute='envra') | list }}"
+      register: updatelist_result
