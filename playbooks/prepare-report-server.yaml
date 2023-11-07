@@ -24,6 +24,7 @@
     become: true
     service:
       name: httpd
+      enabled: true
       state: started
       
   - name: allow access port 80
