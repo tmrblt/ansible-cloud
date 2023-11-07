@@ -1,9 +1,9 @@
 ---
-- name: Gather facts from all VMs
+- name: vmware inventory report
   hosts: all
   gather_facts: false
   tasks:
-    - name: Create a DOS-style text file from a template
+    - name: create vmware inventry report
       ansible.builtin.template:
         src: templates/vmware_inventory_report.j2
         dest: /var/www/html/vmware_inventory_report.html
