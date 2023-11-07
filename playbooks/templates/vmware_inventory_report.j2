@@ -1,1 +1,15 @@
-
+<html>
+<table>
+<tr>
+{% for host in groups['linux'] %}
+         <td> {{hostvars[inventory_hostname]['guest.guestFullName'] }}</td>
+         <td>  {{hostvars[inventory_hostname]['guest.ipAddress'] }}</td>
+         <td>  {{hostvars[inventory_hostname]['summary.config.memorySizeMB'] }}</td>
+         <td>  {{hostvars[inventory_hostname]['ansible_processor_vcpus'] }}</td>
+         <td>  {{hostvars[inventory_hostname]['summary.config.numCpu'] }}</td>
+          <td> {{hostvars[inventory_hostname]['summary.quickStats.uptimeSeconds'] }}</td>
+          <td> {{hostvars[inventory_hostname]['runtime.powerState']}}</td>"
+{% endfor %}
+ </tr>
+ </table>
+ </html>
