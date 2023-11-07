@@ -20,10 +20,8 @@
       when: ansible_os_family == "Debian"
     
     - debug: var=update_result
-      when: ansible_os_family == "Debian"
     
     - debug: var=ansible_facts
-      when: ansible_os_family == "Debian"
 
     - name: create array for updates
       set_fact:
@@ -31,7 +29,7 @@
       register: updatelist_result
       when: ansible_os_family == "RedHat"
 
-    - name: create HTMl report
+    - name: create HTML report
       template:
         src: templates/linux_patch_reports.j2
         dest: /var/www/html/linux_patch_report.html
