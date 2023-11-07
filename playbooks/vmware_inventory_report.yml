@@ -5,7 +5,7 @@
   tasks:
     - name: print report
       debug:
-        var: "{{ hostvars[inventory_hostname][item] }} - "
+        msg: "{{ hostvars[inventory_hostname][item] }} - "
       loop:
       - config.name
       - guest.guestFullName
