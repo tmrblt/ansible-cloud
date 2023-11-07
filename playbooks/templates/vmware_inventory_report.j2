@@ -2,33 +2,30 @@
 <html>
 <head>
 <style>
-body { 
-  font-size: 140%; 
+.my-table {
+    border: solid 1px #DDEEEE;
+    border-collapse: collapse;
+    border-spacing: 0;
+    font: normal 13px Arial, sans-serif;
 }
-
-h2 {
-  text-align: center;
-  padding: 20px 0;
+.my-table thead th {
+    background-color: #DDEFEF;
+    border: solid 1px #DDEEEE;
+    color: #336B6B;
+    padding: 10px;
+    text-align: left;
+    text-shadow: 1px 1px 1px #fff;
 }
-
-table caption {
-  padding: .5em 0;
-}
-
-table.dataTable th,
-table.dataTable td {
-  white-space: nowrap;
-}
-
-.p {
-  text-align: center;
-  padding-top: 140px;
-  font-size: 14px;
+.my-table tbody td {
+    border: solid 1px #DDEEEE;
+    color: #333;
+    padding: 10px;
+    text-shadow: 1px 1px 1px #fff;
 }
 </style
 </head>
 <body>
-<table>
+<table class=my-table>
     <thead>
         <tr>
             <th>Hostname</th>
