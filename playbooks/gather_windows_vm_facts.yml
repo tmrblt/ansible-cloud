@@ -5,3 +5,6 @@
   - name: print facts
     debug:
       var: ansible_facts
+  - name: print hostvars
+    debug:
+      var: hostvars[ansible_hostname]
