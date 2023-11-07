@@ -1,7 +1,7 @@
 <html>
 <table>
 <tr>
-{% for host in groups['linux'] %}
+{% for host in groups['all'] %}
          <td> {{hostvars[inventory_hostname]['guest.guestFullName'] }}</td>
          <td>  {{hostvars[inventory_hostname]['guest.ipAddress'] }}</td>
          <td>  {{hostvars[inventory_hostname]['summary.config.memorySizeMB'] }}</td>
