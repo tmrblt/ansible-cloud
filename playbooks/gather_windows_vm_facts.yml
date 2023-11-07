@@ -5,6 +5,4 @@
   - name: print facts
     debug:
       var: ansible_facts
-  - name: print hostvars
-    debug:
-      var: hostvars[inventory_hostname]
+    when: runtime.powerState == PoweredOn
