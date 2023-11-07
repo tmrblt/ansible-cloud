@@ -8,6 +8,7 @@
       ansible.builtin.apt:
         name: "*"
         state: latest
+      check_mode: true
       register: update_result
       when: ansible_os_family == "Debian"
           
