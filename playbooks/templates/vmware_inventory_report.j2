@@ -5,8 +5,8 @@
          <td> {{hostvars[host]['config.name'] }}</td>
          <td> {{hostvars[host]['guest.guestFullName'] }}</td>
          <td>  {{hostvars[host]['guest.ipAddress'] }}</td>
-         <td>  {{hostvars[host]['summary.config.memorySizeMB'] }}</td>
-         <td>  {{hostvars[host]['summary.config.numCpu'] }}</td>
+         <td>  {{hostvars[host]['config.hardware.memoryMB'] }}</td>
+         <td>  {{hostvars[host]['config.hardware.numCPU'] }}</td>
           <td> {{hostvars[host]['summary.quickStats.uptimeSeconds'] }}</td>
           <td> {{hostvars[host]['runtime.powerState']}}</td>"
  </tr>
