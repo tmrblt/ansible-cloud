@@ -40,6 +40,7 @@
     <tbody>
 {% for host in groups['all'] %}
 <tr>
+         <td> {{ loop.index }} </td>
          <td> {{hostvars[host]['config.name'] }}</td>
          <td> {{hostvars[host]['config.guestFullName'] }}</td>
          <td>  {{hostvars[host]['guest.ipAddress'] }}</td>
