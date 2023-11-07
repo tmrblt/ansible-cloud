@@ -1,0 +1,28 @@
+- name: linux patch report
+  hosts: all
+  gather_facts: true
+  vars:
+    updatelist: []
+  tasks:
+    - name: list updates
+      ansible.builtin.apt:
+        name: "*"
+        state: latest
+      register: update_result
+      when: ansible_os_family == "Debian"
+          
+    - debug: var=update_result
+      when: ansible_os_family == "Debian"
+
+    - name: create array for updates
+      set_fact:
+        updatelist: "{{ update_result.results | map(attribute='envra') | list }}"
+      register: updatelist_result
+      when: ansible_os_family == "Debian"
+
+    - name: create HTML report
+      template:
+        src: templates/linux_patch_reports.j2
+        dest: /var/www/html/linux_patch_report_rhel_family.html
+      delegate_to: "{{ report_server }}"
+      run_once: true
