@@ -1,6 +1,6 @@
 ---
 - name: prepare report-server
-  hosts: aap-db
+  hosts: "{{ report_server }}"
   become: true
   vars:
     web_port: 80
