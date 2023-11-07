@@ -11,17 +11,16 @@
       register: update_result
       when: ansible_os_family == "RedHat"
       
-#    - name: list updates
-#      ansible.builtin.apt:
-#        name: "*"
-#        state: latest
-#      check_mode: true
-#      register: update_result
-#      when: ansible_os_family == "Debian"
+    - name: list updates
+      ansible.builtin.apt:
+        name: "*"
+        state: latest
+      check_mode: true
+      register: update_result
+      when: ansible_os_family == "Debian"
     
     - debug: var=update_result
-    
-    - debug: var=ansible_facts
+      when: ansible_os_family == "Debian" or ansible_os_family == "RedHat"
 
     - name: create array for updates
       set_fact:
