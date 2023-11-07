@@ -7,4 +7,4 @@
       var: ansible_facts
   - name: print hostvars
     debug:
-      var: hostvars[ansible_hostname]
+      var: hostvars[inventory_hostname]
