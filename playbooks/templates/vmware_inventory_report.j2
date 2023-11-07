@@ -7,7 +7,7 @@
          <td>  {{hostvars[host]['guest.ipAddress'] }}</td>
          <td>  {{hostvars[host]['config.hardware.memoryMB'] }}</td>
          <td>  {{hostvars[host]['config.hardware.numCPU'] }}</td>
-          <td> {{ ( hostvars[host]['summary.quickStats.uptimeSeconds']   | int ) / 86400 }}</td>
+          <td> {{ ( hostvars[host]['summary.quickStats.uptimeSeconds']   | int ) // 86400 }} days</td>
           <td> {{hostvars[host]['runtime.powerState']}}</td>"
  </tr>
 {% endfor %}
