@@ -1,5 +1,22 @@
+<!DOCTYPE html>
 <html>
-<table border="1">
+<head>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<table>
+    <thead>
+        <tr>
+            <th>Hostname</th>
+            <th>Distribution</th>
+            <th>Kernel</th>
+            <th>Updates</th>
+            <th>Distribution</th>
+            <th>Kernel</th>
+            <th>Updates</th>
+        </tr>
+    </thead>
+    <tbody>
 {% for host in groups['all'] %}
 <tr>
          <td> {{hostvars[host]['config.name'] }}</td>
@@ -11,5 +28,8 @@
           <td> {{hostvars[host]['runtime.powerState']}}</td>"
  </tr>
 {% endfor %}
- </table>
- </html>
+    </tbody>
+</table>
+
+</body>
+</html>
