@@ -3,14 +3,9 @@
   hosts: all
   gather_facts: false
   tasks:
-    - name: print report
-      debug:
-        msg: | 
-          "{{ hostvars[inventory_hostname]['config.name'] }} -
-          {{hostvars[inventory_hostname]['guest.guestFullName'] }} -
-          {{hostvars[inventory_hostname]['guest.ipAddress'] }} -
-          {{hostvars[inventory_hostname]['summary.config.memorySizeMB'] }} -
-          {{hostvars[inventory_hostname]['summary.config.numCpu'] }} -
-          {{hostvars[inventory_hostname]['summary.quickStats.uptimeSeconds'] }}  -
-          {{hostvars[inventory_hostname]['runtime.powerState']}}"
-
+    - name: Create a DOS-style text file from a template
+      ansible.builtin.template:
+        src: templates/vmware_inventory_report.j2
+        dest: /var/www/html/vmware_inventory_report.html
+      delegate_to: "{{ report-server }}"
+      run_once: true
