@@ -9,15 +9,19 @@
         list: updates
         use_backend: yum3
       register: update_result
+      when: ansible_os_family == "RedHat"
     
     - debug: var=update_result
+      when: ansible_os_family == "RedHat"
     
     - debug: var=ansible_facts
+      when: ansible_os_family == "RedHat"
 
     - name: create array for updates
       set_fact:
         updatelist: "{{ update_result.results | map(attribute='envra') | list }}"
       register: updatelist_result
+      when: ansible_os_family == "RedHat"
 
     - name: create HTMl report
       template:
