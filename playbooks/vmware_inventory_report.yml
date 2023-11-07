@@ -11,6 +11,6 @@
           {{hostvars[inventory_hostname]['guest.ipAddress'] }} -
           {{hostvars[inventory_hostname]['summary.config.memorySizeMB'] }} -
           {{hostvars[inventory_hostname]['ansible_processor_vcpus'] }} -
-          {{hostvars[inventory_hostname]['ansible_uptime_seconds'] }}  -
+          {{hostvars[inventory_hostname]['summary.quickStats.uptimeSeconds'] }}  -
           {{hostvars[inventory_hostname]['runtime.powerState']}}"
 
