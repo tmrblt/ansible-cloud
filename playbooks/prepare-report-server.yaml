@@ -7,22 +7,19 @@
   tasks:
  
   - name: install apache
-    become: true
-    yum:
+    ansible.builtin.yum:
       name: httpd
       state: present
 
   - name: change apache to specified port
-    become: true
-    lineinfile:
+    ansible.builtin.lineinfile:
       path: /etc/httpd/conf/httpd.conf
       regexp: '^Listen '
       insertafter: '^#Listen '
       line: 'Listen {{web_port}}'
 
   - name: start httpd
-    become: true
-    service:
+    ansible.builtin.service:
       name: httpd
       enabled: true
       state: started
@@ -34,9 +31,10 @@
       permanent: true
       state: enabled
 
-  - name: restart firewall service
+  - name: restart firewalld service
     ansible.builtin.service:
       name: firewalld
+      enabled: true
       state: restarted
 
   - name: display link to inventory report
