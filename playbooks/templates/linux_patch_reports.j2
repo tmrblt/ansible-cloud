@@ -29,6 +29,7 @@
 <table class=my-table>
     <thead>
         <tr>
+            <th> # </th>
             <th>Hostname</th>
             <th>Distribution</th>
             <th>Kernel</th>
@@ -38,6 +39,7 @@
     <tbody>
 {% for host in vars['play_hosts'] %}
         <tr>
+            <td> {{ loop.index }} </td>
             <td>{{hostvars[host].ansible_hostname}}</td>
             <td>{{hostvars[host].ansible_distribution}} {{hostvars[host].ansible_distribution_version}}</td>
             <td>{{ansible_facts['kernel']}}</td>
