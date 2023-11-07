@@ -30,7 +30,7 @@
   - name: allow access port 80
     ansible.posix.firewalld:
       zone: public
-      port: 80
+      port: 80/tcp
       permanent: true
       state: enabled
 
