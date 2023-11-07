@@ -3,7 +3,7 @@
 {% for host in groups['all'] %}
 <tr>
          <td> {{hostvars[host]['config.name'] }}</td>
-         <td> {{hostvars[host]['guest.guestFullName'] }}</td>
+         <td> {{hostvars[host]['config.guestFullName'] }}</td>
          <td>  {{hostvars[host]['guest.ipAddress'] }}</td>
          <td>  {{hostvars[host]['config.hardware.memoryMB'] }}</td>
          <td>  {{hostvars[host]['config.hardware.numCPU'] }}</td>
