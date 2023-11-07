@@ -19,9 +19,9 @@
         updatelist: "{{ update_result.results | map(attribute='envra') | list }}"
       register: updatelist_result
 
-    - name: Create HTMl report
+    - name: create HTMl report
       template:
         src: report-linux-updates.j2
-        dest: /tmp/report.html
-      delegate_to: "{{ report-server }}"
+        dest: /var/www/html/linux_patch_report.html
+      delegate_to: "{{ report_server }}"
       run_once: true
