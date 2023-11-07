@@ -18,3 +18,10 @@
       set_fact:
         updatelist: "{{ update_result.results | map(attribute='envra') | list }}"
       register: updatelist_result
+
+    - name: Create HTMl report
+      template:
+        src: report-linux-updates.j2
+        dest: /tmp/report.html
+      delegate_to: "{{ report-server }}"
+      run_once: true
