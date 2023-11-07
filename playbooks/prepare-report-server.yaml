@@ -34,6 +34,11 @@
       permanent: true
       state: enabled
 
+  - name: restart firewall service
+    ansible.builtin.service:
+      name: firewalld
+      state: restarted
+
   - name: display link to inventory report
     debug:
       msg:
