@@ -5,5 +5,5 @@
   tasks:
     - name: print report
       debug:
-        msg: "{{ hostvars[inventory_hostname]['config.name'] }} - {{ ansible_facts.os_name }} - {{ ansible_facts.uptimeSeconds }} {{ ansible_facts.os_name }} - {{ ansible_facts.memtotal_mb }}"
+        msg: "{{ hostvars[inventory_hostname]['config.name'] }} - {{hostvars[inventory_hostname]['ansible_distribution'] }} - {{hostvars[inventory_hostname]['ansible_memtotal_mb'] }} - {{hostvars[inventory_hostname]['ansible_processor_vcpus'] }} - {{hostvars[inventory_hostname][ansible_uptime_seconds'] }}  - {{hostvars[inventory_hostname]['powerState']}}
 
