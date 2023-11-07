@@ -5,4 +5,4 @@
   - name: print facts
     debug:
       var: ansible_facts
-    when: hostvars[inventory_hostname].powerState == 'PoweredOn'
+    when: hostvars[inventory_hostname].powerState == 'poweredOn'
