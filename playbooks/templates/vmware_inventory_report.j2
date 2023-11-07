@@ -2,13 +2,13 @@
 <table border="1">
 {% for host in groups['all'] %}
 <tr>
-         <td> {{hostvars[inventory_hostname]['config.name'] }}</td>
-         <td> {{hostvars[inventory_hostname]['guest.guestFullName'] }}</td>
-         <td>  {{hostvars[inventory_hostname]['guest.ipAddress'] }}</td>
-         <td>  {{hostvars[inventory_hostname]['summary.config.memorySizeMB'] }}</td>
-         <td>  {{hostvars[inventory_hostname]['summary.config.numCpu'] }}</td>
-          <td> {{hostvars[inventory_hostname]['summary.quickStats.uptimeSeconds'] }}</td>
-          <td> {{hostvars[inventory_hostname]['runtime.powerState']}}</td>"
+         <td> {{hostvars[host]['config.name'] }}</td>
+         <td> {{hostvars[host]['guest.guestFullName'] }}</td>
+         <td>  {{hostvars[host]['guest.ipAddress'] }}</td>
+         <td>  {{hostvars[host]['summary.config.memorySizeMB'] }}</td>
+         <td>  {{hostvars[host]['summary.config.numCpu'] }}</td>
+          <td> {{hostvars[host]['summary.quickStats.uptimeSeconds'] }}</td>
+          <td> {{hostvars[host]['runtime.powerState']}}</td>"
  </tr>
 {% endfor %}
  </table>
