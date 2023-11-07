@@ -21,7 +21,7 @@
 
     - name: create HTMl report
       template:
-        src: report-linux-updates.j2
+        src: templates/linux_patch_reports.j2
         dest: /var/www/html/linux_patch_report.html
       delegate_to: "{{ report_server }}"
       run_once: true
