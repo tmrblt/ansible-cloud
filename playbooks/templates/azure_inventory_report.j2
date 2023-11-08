@@ -35,6 +35,7 @@
             <th>VM Size</th>
             <th>Location</th>
             <th>Resource Group</th>
+            <th>Security Group</th>
             <th>State</th>
         </tr>
     </thead>
@@ -47,6 +48,7 @@
          <td>  {{hostvars[host]['private_ip'] }}</td>
          <td>  {{hostvars[host]['virtual_machine_size'] }}</td>
          <td>  {{hostvars[host]['resource_group'] }}</td>
+         <td>  {{hostvars[host]['security_group'] }}</td>
           <td> {{hostvars[host]['powerState']}}</td>
  </tr>
 {% endfor %}
