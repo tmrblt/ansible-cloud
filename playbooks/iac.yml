@@ -1,1 +1,7 @@
-
+---
+name: print
+hosts: localhost
+tasks:
+- name: write message
+  debug:
+    msg: 'test'
