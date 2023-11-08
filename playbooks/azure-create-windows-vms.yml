@@ -11,6 +11,7 @@
     subnet_cidr: '10.0.0.0/24'
     vnet_name: 'aap-vnet'
     subnet_name: 'default'
+    public_ip: false
     
     network_sec_group_name: "{{ vm_name }}_nsg"
     vm_name: 'demo-vm'
@@ -75,7 +76,7 @@
       virtual_network: "{{ vnet_name }}"
       subnet: "{{ subnet_name }}"
       security_group: "{{ network_sec_group_name }}"
-      public_ip: false      
+      public_ip: "{{public_ip}}"     
       ip_configurations:
       - name: ipconfig
         primary: true
