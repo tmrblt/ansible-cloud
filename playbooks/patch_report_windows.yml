@@ -23,8 +23,10 @@
     
     - name: edit list for updates
       set_fact:
-        updatelist: "{{ update_result | json_query('*.*.title[]') }}"
-    
+        updatelist: "{{ update_result | json_query(jmesquery) }}"
+      vars:
+        jmesquery: '*.*.title[]'
+        
     - name: Create HTML report
       become: yes
       become_method: sudo
