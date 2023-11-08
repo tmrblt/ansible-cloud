@@ -3,7 +3,7 @@
   hosts: "{{ report_server }}"
   become: true
   vars:
-    web_port: 8080
+    web_port: 8088
   tasks:
  
   - name: install apache
