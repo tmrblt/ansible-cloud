@@ -4,8 +4,6 @@
   vars:
     updatelist: []
   tasks:
-    - debug: var=ansible_facts
-
     - name: Check for updates 
       win_updates:
         #category_names:
