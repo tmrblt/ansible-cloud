@@ -18,7 +18,8 @@
       register: update_result
  
     - name: print update titles
-      debug: msg=""{{ update_result }}""
+      debug:
+        var: update_result
 
     - name: edit list for updates
       set_fact:
