@@ -44,7 +44,7 @@
             <td>{{hostvars[host].ansible_distribution}}</td>
             <td>{{ansible_facts['kernel']}}</td>
             <td>{% if hostvars[host].updateresult is defined %}
-                    {% for item in hostvars[host].update_result.[*].[*].title %}
+                    {% for item in hostvars[host].update_result.map(function(element) { return element[title] } ); %}
                        - {{ item }} <br>
                     {% endfor %}
                 {% endif  %}
