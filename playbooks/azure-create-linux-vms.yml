@@ -96,10 +96,10 @@
       public_ip: "{{ public_ip }}"
       ip_configurations:
       - name: ipconfig
-        primary: false
+        primary: true
         private_ip_allocation_method: Dynamic
       dns_servers:
-      - 8.8.8.8      
+      - 8.8.8.8   
   
   - name: "create VM: {{ vm_name }}"
     azure.azcollection.azure_rm_virtualmachine:
