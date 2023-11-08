@@ -20,10 +20,11 @@
     - name: print update titles
       debug:
         var: update_result
-
-    - name: edit list for updates
-      set_fact:
-        updatelist: "{{ update_result }}"
+    
+    - set_fact:
+      my_list: "{{ result.updates | json_query('*.{ title: title }') }}"
+- debug:
+    var: my_list
 
 #    - name: print updates
 #      debug:
