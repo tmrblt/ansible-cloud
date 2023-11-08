@@ -1,9 +1,12 @@
 - name: linux patch report
   hosts: all
-  gather_facts: true
   vars:
     updatelist: []
   tasks:
+
+    - setup:
+      when: ansible_os_family == "RedHat"
+      
     - name: list updates
       yum:
         list: updates
