@@ -16,16 +16,16 @@
         state: searched
         log_path: C:\ansible_wu.txt
       register: update_result
- 
-    - name: print update titles
-      debug:
-        var: update_result
     
     - name: edit list for updates
       set_fact:
         updatelist: "{{ update_result | json_query(jmesquery) }}"
       vars:
         jmesquery: '*.*.title[]'
+ 
+    - name: print update titles
+      debug:
+        var: updatelist
         
     - name: Create HTML report
       become: yes
