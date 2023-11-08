@@ -11,13 +11,10 @@
       check_mode: true
       register: update_result
       when: ansible_os_family == "Debian"
-          
-    - debug: var=update_result
-      when: ansible_os_family == "Debian"
 
     - name: create array for updates
       set_fact:
-        updatelist: "{{ update_result.stdout_lines }}"
+        updatelist: "{{ update_result | json_query('stdout_lines') }}"
       register: updatelist
       when: ansible_os_family == "Debian"
 
