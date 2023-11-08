@@ -44,7 +44,7 @@
 <tr>
          <td> {{ loop.index }} </td>
          <td>{% if hostvars[host].computer_name is defined %} {{hostvars[host]['computer_name'] }} {% endif  %}</td>
-         <td>{% if hostvars[host].image is defined %} {{hostvars[host]['image'].offer}}-{{hostvars[host]['image'].version}} {% endif  %}</td>
+        # <td>{% if hostvars[host].image is defined  %} {{hostvars[host]['image'].offer}}-{{hostvars[host]['image'].version}} {% endif  %}</td>
          <td>{% if hostvars[host].private_ip is defined %}  {{hostvars[host]['private_ip'] }} {% endif  %}</td>
          <td>{% if hostvars[host].virtual_machine_size is defined %}  {{hostvars[host]['virtual_machine_size'] }} {% endif  %}</td>
          <td>{% if hostvars[host].location is defined %}  {{hostvars[host]['location'] }} {% endif  %}</td>
