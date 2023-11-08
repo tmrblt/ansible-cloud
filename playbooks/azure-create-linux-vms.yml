@@ -10,7 +10,7 @@
     vnet_name: 'aap-vnet'
     subnet_name: 'default'
     ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCo4AcnaTev9s3XniFXBymq+UOwTjnIol6U36PHaCiJdPohDeHQKYpg1vIB8IXNnqKemVN9gjTmEHU6Ri5nn9wG55qC/rXvKkT9oqO2FKyPkVPYe2BqyuhBj5ilEIMMYDv1spQ2PfeQWmBoGRIzY+2GCExEkf8acbzzH1mNtu7QzbV00cowf/Q14VGB/hVCg1y2y9hndcRtUT3ajl92gMd/06Ebm381guBiY9DMBj9ghhZQeKC5kr4TUahuqM7zmvLcvBsFSGOYT27IOILiRMF6HD/DthX41t+KDf7EYKlGycjnWFVtvOKm6sCHeoFaFPjP/RNauqYMmdhxKwT4QxE8rNAIAU0L2pdWKqYg5WqfpqQsKZleHYH+gaijUusCW9pMkCxMJwxz5gw1520KxOiUKli2e6oL1psff8+7eDuDQmNtAS4XWnciemoK06zqy7uds1/szZi/EGzi7jLVuBGG3ZZYPrknDg57heCvaF5rgW7aN5OzNE3Hq/DlKErzBwk= sysadmin@t490s.home.local"
-    public_ip: true
+    public_ip: false
     
     network_sec_group_name: "{{ vm_name }}_nsg"
     vm_name: 'demo-vm'
@@ -77,7 +77,15 @@
         access: Allow
         priority: 1003
         direction: Inbound
-
+ 
+  - name: Create public IP address
+    azure_rm_publicipaddress:
+      resource_group: myResourceGroup
+      allocation_method: Static
+      name: myPublicIP
+    register: output_ip_address
+    when: public_ip
+    
   - name: "create virtual nic: {{ nic_name }}"
     azure.azcollection.azure_rm_networkinterface:
       resource_group: "{{ resource_group_name }}"
@@ -85,10 +93,9 @@
       virtual_network: "{{ vnet_name }}"
       subnet: "{{ subnet_name }}"
       security_group: "{{ network_sec_group_name }}"
-      public_ip: "
       ip_configurations:
       - name: ipconfig
-        primary: true
+        primary: false
         private_ip_allocation_method: Dynamic
       dns_servers:
       - 8.8.8.8
