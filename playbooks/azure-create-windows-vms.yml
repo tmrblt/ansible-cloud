@@ -7,8 +7,6 @@
     resource_group_name: 'openenv-9kk9c'
     network_resource_id: '/subscriptions/ede7f891-835c-4128-af5b-0e53848e54e7/resourceGroups/openenv-9kk9c/providers/Microsoft.Network/virtualNetworks/aap-vnet'
     region: 'eastus'
-    vnet_cidr: '10.0.0.0/16'
-    subnet_cidr: '10.0.0.0/24'
     vnet_name: 'aap-vnet'
     subnet_name: 'default'
     public_ip: false
