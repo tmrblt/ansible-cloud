@@ -17,7 +17,7 @@
 
     - name: create array for updates
       set_fact:
-        updatelist: "{{ update_result.stdout_lines[] }}"
+        updatelist: "{{ update_result.stdout_lines }}"
       register: updatelist
       when: ansible_os_family == "Debian"
 
