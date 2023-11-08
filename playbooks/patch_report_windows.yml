@@ -21,33 +21,9 @@
       debug:
         var: update_result
     
-    - set_fact:
-        update_list: "{{ update_result | json_query('*.{ title: title }') }}"
-    - debug:
-        var: update_list
-
-#    - name: print updates
-#      debug:
-#        msg: KB is "{{item.value.kb[0]}}" Title is "{{item.value.title}}"
-#      loop: "{{lookup('dict',update_result.filtered_updates)}}"
-
-#    - name: create array for updates
-#      set_fact:
-#        updatelist: "{{updatelist + [item.value.title]}}"
-#      loop: "{{lookup('dict',update_result.updates)}}"
-#      register: updatelist_result
-
-#    - name: update array for filtered_updates
-#     set_fact:
-#        updatelist: "{{updatelist + [item.value.title]}}"
-#      loop: "{{lookup('dict',update_result.filtered_updates)}}"
-#      register: updatelist_result
-    
-#    - debug: var=updatelist_result
-
-#    - debug: var=updatelist
-    
-#    - debug: var=ansible_facts 
+    - name: edit list for updates
+      set_fact:
+        updatelist: "{{ update_result | json_query('*.*.title[]') }}"
     
     - name: Create HTML report
       become: yes
