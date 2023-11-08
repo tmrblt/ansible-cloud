@@ -5,6 +5,7 @@
     updatelist: []
   tasks:
     - name: Check for updates 
+      become: yes
       win_updates:
         #category_names:
         #  - SecurityUpdates
@@ -46,6 +47,7 @@
     
     - name: Create HTMl report
       template:
+      become: yes
         src: patch_report_windows.j2
         dest: /var/www/html/patch_report_windows.html
       delegate_to: "{{ report_server }}"
