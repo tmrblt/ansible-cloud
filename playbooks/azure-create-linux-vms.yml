@@ -7,12 +7,11 @@
     resource_group_name: 'openenv-9kk9c'
     network_resource_id: '/subscriptions/ede7f891-835c-4128-af5b-0e53848e54e7/resourceGroups/openenv-9kk9c/providers/Microsoft.Network/virtualNetworks/aap-vnet'
     region: 'eastus'
-    vnet_cidr: '10.0.0.0/16'
-    subnet_cidr: '10.0.0.0/24'
     vnet_name: 'aap-vnet'
     subnet_name: 'default'
     ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCo4AcnaTev9s3XniFXBymq+UOwTjnIol6U36PHaCiJdPohDeHQKYpg1vIB8IXNnqKemVN9gjTmEHU6Ri5nn9wG55qC/rXvKkT9oqO2FKyPkVPYe2BqyuhBj5ilEIMMYDv1spQ2PfeQWmBoGRIzY+2GCExEkf8acbzzH1mNtu7QzbV00cowf/Q14VGB/hVCg1y2y9hndcRtUT3ajl92gMd/06Ebm381guBiY9DMBj9ghhZQeKC5kr4TUahuqM7zmvLcvBsFSGOYT27IOILiRMF6HD/DthX41t+KDf7EYKlGycjnWFVtvOKm6sCHeoFaFPjP/RNauqYMmdhxKwT4QxE8rNAIAU0L2pdWKqYg5WqfpqQsKZleHYH+gaijUusCW9pMkCxMJwxz5gw1520KxOiUKli2e6oL1psff8+7eDuDQmNtAS4XWnciemoK06zqy7uds1/szZi/EGzi7jLVuBGG3ZZYPrknDg57heCvaF5rgW7aN5OzNE3Hq/DlKErzBwk= sysadmin@t490s.home.local"
-
+    public_ip: true
+    
     network_sec_group_name: "{{ vm_name }}_nsg"
     vm_name: 'demo-vm'
     vm_size: 'Standard_B2ats_v2'
@@ -86,7 +85,7 @@
       virtual_network: "{{ vnet_name }}"
       subnet: "{{ subnet_name }}"
       security_group: "{{ network_sec_group_name }}"
-      public_ip: false
+      public_ip: "
       ip_configurations:
       - name: ipconfig
         primary: true
