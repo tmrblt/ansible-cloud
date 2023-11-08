@@ -93,31 +93,13 @@
       virtual_network: "{{ vnet_name }}"
       subnet: "{{ subnet_name }}"
       security_group: "{{ network_sec_group_name }}"
-      public_ip: true
-      public_ip_name: "{{ public_ip_name }}"
+      public_ip: "{{ public_ip }}"
       ip_configurations:
       - name: ipconfig
         primary: false
         private_ip_allocation_method: Dynamic
       dns_servers:
       - 8.8.8.8      
-    when: public_ip    
-  
-  - name: "create virtual nic: {{ nic_name }}"
-    azure.azcollection.azure_rm_networkinterface:
-      resource_group: "{{ resource_group_name }}"
-      name: "{{ nic_name }}"
-      virtual_network: "{{ vnet_name }}"
-      subnet: "{{ subnet_name }}"
-      security_group: "{{ network_sec_group_name }}"
-      public_ip: false
-      ip_configurations:
-      - name: ipconfig
-        primary: false
-        private_ip_allocation_method: Dynamic
-      dns_servers:
-      - 8.8.8.8
-    when: !public_ip
   
   - name: "create VM: {{ vm_name }}"
     azure.azcollection.azure_rm_virtualmachine:
