@@ -1,0 +1,11 @@
+---
+- name: azure inventory report
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: azure vmware inventry report
+      ansible.builtin.template:
+        src: templates/azure_inventory_report.j2
+        dest: /var/www/html/azure_inventory_report.html
+      delegate_to: "{{ report_server }}"
+      run_once: true
