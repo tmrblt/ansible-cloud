@@ -22,9 +22,9 @@
         var: update_result
     
     - set_fact:
-      my_list: "{{ result.updates | json_query('*.{ title: title }') }}"
-- debug:
-    var: my_list
+      update_list: "{{ result.updates | json_query('*.{ title: title }') }}"
+    - debug:
+      var: update_list
 
 #    - name: print updates
 #      debug:
