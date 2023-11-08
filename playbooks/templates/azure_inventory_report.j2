@@ -47,8 +47,9 @@
          <td> {{hostvars[host]['image']['offer'] }}</td>
          <td>  {{hostvars[host]['private_ip'] }}</td>
          <td>  {{hostvars[host]['virtual_machine_size'] }}</td>
+         <td>  {{hostvars[host]['location'] }}</td>
          <td>  {{hostvars[host]['resource_group'] }}</td>
-         <td>  {{hostvars[host]['security_group'] }}</td>
+         <td>  {{hostvars[host].security_group }}</td>
           <td> {{hostvars[host]['powerstate']}}</td>
  </tr>
 {% endfor %}
