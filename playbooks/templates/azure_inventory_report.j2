@@ -43,14 +43,14 @@
 {% for host in groups['all'] %}
 <tr>
          <td> {{ loop.index }} </td>
-         <td> {{hostvars[host]['computer_name'] }}</td>
-         <td> {{hostvars[host]['image'].offer}}-{{hostvars[host]['image'].version}}</td>
-         <td>  {{hostvars[host]['private_ip'] }}</td>
-         <td>  {{hostvars[host]['virtual_machine_size'] }}</td>
-         <td>  {{hostvars[host]['location'] }}</td>
-         <td>  {{hostvars[host]['resource_group'] }}</td>
-         <td>  {{hostvars[host].security_group }}</td>
-          <td> {{hostvars[host]['powerstate']}}</td>
+         <td> {{hostvars[host]['computer_name'] }} {% endif  %}</td>
+         <td> {{hostvars[host]['image'].offer}}-{{hostvars[host]['image'].version}} {% endif  %}</td>
+         <td>  {{hostvars[host]['private_ip'] }} {% endif  %}</td>
+         <td>  {{hostvars[host]['virtual_machine_size'] }} {% endif  %}</td>
+         <td>  {{hostvars[host]['location'] }} {% endif  %}</td>
+         <td>  {{hostvars[host]['resource_group'] }} {% endif  %}</td>
+         <td>  {{hostvars[host].security_group }} {% endif  %}</td>
+          <td> {{hostvars[host]['powerstate']}} {% endif  %}</td>
  </tr>
 {% endfor %}
     </tbody>
