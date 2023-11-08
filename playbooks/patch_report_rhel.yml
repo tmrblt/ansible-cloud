@@ -1,5 +1,6 @@
 - name: linux patch report
   hosts: all
+  gather_facts: no
   vars:
     updatelist: []
   tasks:
