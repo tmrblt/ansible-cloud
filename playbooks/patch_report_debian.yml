@@ -23,7 +23,7 @@
 
     - name: create HTML report
       template:
-        src: templates/debian_patch_report.j2
-        dest: /var/www/html/debian_patch_report.html
+        src: templates/patch_report_debian.j2
+        dest: /var/www/html/patch_report_debian.html
       delegate_to: "{{ report_server }}"
       run_once: true
