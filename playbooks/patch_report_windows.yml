@@ -9,9 +9,9 @@
       become_method: runas
       become_user: Administrator
       win_updates:
-        #category_names:
+        category_names:
         #  - SecurityUpdates
-        #  - CriticalUpdates
+        - CriticalUpdates
         #  - UpdateRollups
         state: searched
         log_path: C:\ansible_wu.txt
