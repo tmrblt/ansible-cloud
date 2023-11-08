@@ -43,7 +43,7 @@
             <td>{{hostvars[host].ansible_hostname}}</td>
             <td>{{hostvars[host].ansible_distribution}}</td>
             <td>{{ansible_facts['kernel']}}</td>
-            <td>{% if hostvars[host].updateresult is defined %}
+            <td>{% if hostvars[host].updatelist is defined %}
                     {% for item in hostvars[host].updatelist %}
                        - {{ item }} <br>
                     {% endfor %}
