@@ -6,8 +6,8 @@
   tasks:
     - name: Check for updates 
       become: yes
-      become_methos: runas
-      becıme_user: Administrator
+      become_method: runas
+      become_user: Administrator
       win_updates:
         #category_names:
         #  - SecurityUpdates
