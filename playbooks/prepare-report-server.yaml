@@ -37,9 +37,12 @@
       enabled: true
       state: restarted
 
-  - name: Remove file (delete file)
+  - name: create report links
     ansible.builtin.copy:
-      content: "This is a report server."
+      content: | 
+        <a href=patch_report_windows.html> Patch Report Windows </a><br>
+        <a href=patch_report_rhel.html> Patch Report RHEL Family </a><br>
+        <a href=patch_report_debian.html> Patch Report Debian Family </a><br>
       dest: /var/www/html/index.html
 
   - name: display link to inventory report
