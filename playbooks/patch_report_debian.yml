@@ -18,6 +18,8 @@
       register: updatelist
       when: ansible_os_family == "Debian"
 
+    - debug: var=updatelist
+
     - name: create HTML report
       template:
         src: templates/patch_report_debian.j2
