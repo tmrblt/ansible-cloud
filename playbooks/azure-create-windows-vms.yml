@@ -10,6 +10,7 @@
     vnet_name: 'aap-vnet'
     subnet_name: 'default'
     public_ip: false
+    powershell_file_url: 'https://raw.githubusercontent.com/tmrblt/ansible-demos/main/files/ConfigureRemotingForAnsible.ps1' 
     
     network_sec_group_name: "{{ vm_name }}_nsg"
     vm_name: 'demo-vm'
@@ -113,7 +114,7 @@
       publisher: Microsoft.Compute
       virtual_machine_extension_type: CustomScriptExtension
       type_handler_version: '1.9'
-      settings: '{"fileUris": ["https://raw.githubusercontent.com/tmrblt/ansible-demos/main/files/ConfigureRemotingForAnsible.ps1"],"commandToExecute": "powershell -ExecutionPolicy Unrestricted -File ConfigureRemotingForAnsible.ps1"}'
+      settings: '{"fileUris": [powershell_file_url],"commandToExecute": "powershell -ExecutionPolicy Unrestricted -File ConfigureRemotingForAnsible.ps1"}'
       auto_upgrade_minor_version: true
         
   - name: Update a single inventory source
