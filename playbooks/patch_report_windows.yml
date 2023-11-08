@@ -6,6 +6,8 @@
   tasks:
     - name: Check for updates 
       become: yes
+      become_methos: runas
+      becıme_user: Administrator
       win_updates:
         #category_names:
         #  - SecurityUpdates
@@ -46,8 +48,10 @@
 #    - debug: var=ansible_facts 
     
     - name: Create HTMl report
-      template:
       become: yes
+      become_method: sudo
+      become_user: root
+      template:
         src: patch_report_windows.j2
         dest: /var/www/html/patch_report_windows.html
       delegate_to: "{{ report_server }}"
