@@ -48,7 +48,7 @@
     
 #    - debug: var=ansible_facts 
     
-    - name: Create HTMl report
+    - name: Create HTML report
       become: yes
       become_method: sudo
       become_user: root
