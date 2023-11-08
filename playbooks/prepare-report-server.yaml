@@ -40,6 +40,7 @@
   - name: create report links
     ansible.builtin.copy:
       content: | 
+        <a href=vmware_invetory_report.html> VMware Inventory Report </a><br>
         <a href=patch_report_windows.html> Patch Report Windows </a><br>
         <a href=patch_report_rhel.html> Patch Report RHEL Family </a><br>
         <a href=patch_report_debian.html> Patch Report Debian Family </a><br>
