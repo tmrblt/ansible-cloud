@@ -22,7 +22,7 @@
 
     - name: create HTML report
       template:
-        src: templates/rhel_patch_report.j2
-        dest: /var/www/html/rhel_patch_report.html
+        src: templates/patch_report_rhel.j2
+        dest: /var/www/html/patch_report_rhel.html
       delegate_to: "{{ report_server }}"
       run_once: true
