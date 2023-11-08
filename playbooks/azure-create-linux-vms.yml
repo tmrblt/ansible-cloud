@@ -77,14 +77,6 @@
         access: Allow
         priority: 1003
         direction: Inbound
- 
-  - name: Create public IP address
-    azure_rm_publicipaddress:
-      resource_group: "{{ resource_group_name }}"
-      allocation_method: Static
-      name: myPublicIP
-    register: output_ip_address
-    when: public_ip
     
   - name: "create virtual nic: {{ nic_name }}"
     azure.azcollection.azure_rm_networkinterface:
